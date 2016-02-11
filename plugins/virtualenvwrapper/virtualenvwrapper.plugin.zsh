@@ -6,6 +6,13 @@ if (( $+commands[$virtualenvwrapper] )); then
     unsetopt equals
     source ${${virtualenvwrapper}:c}
   }
+elif [[ -f "$VIRTUALENVWRAPPER_SCRIPT" ]]; then
+  function {
+    setopt local_options
+    unsetopt equals
+    virtualenvwrapper="$VIRTUALENVWRAPPER_SCRIPT"
+    source "$VIRTUALENVWRAPPER_SCRIPT"
+  }
 elif [[ -f "/etc/bash_completion.d/virtualenvwrapper" ]]; then
   function {
     setopt local_options

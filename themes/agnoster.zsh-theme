@@ -80,7 +80,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment blue default "%(!.%{%F{yellow}%}.)$USER@%m"
+    prompt_segment blue white "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
 }
 
@@ -101,7 +101,7 @@ prompt_git() {
     if [[ -n $dirty ]]; then
       prompt_segment yellow black
     else
-      prompt_segment blue black
+      prompt_segment blue white
     fi
 
     if [[ -e "${repo_path}/BISECT_LOG" ]]; then

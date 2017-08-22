@@ -249,7 +249,14 @@ alias gstall='git stash --all'
 alias gsu='git submodule update'
 
 alias gts='git tag -s'
-alias gtv='git tag | sort -V'
+
+# sort does not have a -V (version sort) parameter on Mac OS X,
+# unless GNU sort is explicitly installed as gsort.
+if which gsort >/dev/null; then
+  alias gtv='git tag | gsort -V'
+elif [ "`uname -s`" != "Darwin" ]; then
+  alias gtv='git tag | sort -V'
+fi
 
 alias gunignore='git update-index --no-assume-unchanged'
 alias gunwip='git log -n 1 | grep -q -c "--wip--|WIP" && git reset HEAD~1'
